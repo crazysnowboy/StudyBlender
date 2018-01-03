@@ -37,17 +37,23 @@ def GetFileList(root_dir,dirs,fileList):
                 GetFileList(new_root,sub_dirs,fileList)
     return fileList
 
-
+def GetDirFromFilePath(file_path):
+    for i in range(0,len(file_path),1):
+        j = len(file_path)-1-i;
+        if file_path[j]=='/':
+            return file_path[0:j]
+        
+    
 if __name__ == '__main__':
     
-    root_path = '/home/collin/Space_1_5_T/MyDocument/code/AAAAAA/Blender'
-    # root_path = '/home/collin/Documents/MyProjects/AAAAAA/myLearningProjects/myBlenderLearning'
+    # root_path = '/home/collin/Space_1_5_T/MyDocument/code/AAAAAA/Blender'
+    root_path = '/home/collin/Documents/MyProjects/Blender'
 
     dirs = os.listdir(root_path) 
 
     files = GetFileList(root_path,dirs,[]) 
 
-    not_included=['intern','extern','.pyc','.css','cmake'] #not include
+    not_included=['intern','extern','.pyc','.css','cmake','.o','build'] #not include
     and_include = []
     or_include =['.h']
     h_files = Filter_Lists(files,not_included,and_include,or_include)
@@ -61,7 +67,9 @@ if __name__ == '__main__':
 
 
     for file in c_files:
-        print "file = ",file
+        print "file = ",(file)
+        print "file = ",GetDirFromFilePath(file)
+
 
 
 
