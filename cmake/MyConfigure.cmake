@@ -1,0 +1,3 @@
+
+#set(CMAKE_BUILD_TYPE Release) # 等同于 cmake -DCMAKE_BUILD_TYPE=release
+#set(CMAKE_VERBOSE_MAKEFILE 1)
