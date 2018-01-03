@@ -1,11 +1,4 @@
 
-
-add_definitions(${GFLAGS_DEFINES})
-add_definitions(${GLOG_DEFINES})
-add_definitions(-DBLENDER_GFLAGS_NAMESPACE=${GFLAGS_NAMESPACE})
-
-
-
 set(toExe_SRCS ${files_cpp_src} ${files_c_src} ${files_cc_src})
 foreach(source ${Exe_SRCS})
     get_filename_component(SourceName ${source} NAME_WE)
@@ -14,6 +7,8 @@ foreach(source ${Exe_SRCS})
     set(SRCS_ALL ${source} ${toExe_SRCS})
     add_executable(${ExeName} ${SRCS_ALL})
     # link library
+
+    message("exe = ${ExeName}")
     target_link_libraries(${ExeName}
             ${LIBRARIES}
             )

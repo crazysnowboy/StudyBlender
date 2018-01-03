@@ -2,23 +2,20 @@
 
 set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 
-file(GLOB_RECURSE files_hpp "${Blender_Root}/*.hpp")
-file(GLOB_RECURSE files_h "${Blender_Root}/*.h")
 
-foreach(file ${files_hpp})
-    get_filename_component(IncPaths ${file} PATH)
-    list(APPEND INCLUDE_DIR ${IncPaths})
+#blender
+file(STRINGS ${DATA_PATH}/h_files_path.txt inc_dirs)
+foreach(inc_dir ${inc_dirs})
+    list(APPEND INCLUDE_DIR ${inc_dir})
+    # message("inc_dir= ${inc_dir}")
+endforeach(inc_dir)
 
-
-#    message("IncPaths= ${IncPaths}")
-endforeach(file)
-
-foreach(file ${files_h})
-    get_filename_component(IncPaths ${file} PATH)
-    list(APPEND INCLUDE_DIR ${IncPaths})
-
-    #    message("IncPaths= ${IncPaths}")
-endforeach(file)
+#dependencies
+file(STRINGS ${DATA_PATH}/linux_h_files_path.txt inc_dirs)
+foreach(inc_dir ${inc_dirs})
+    list(APPEND INCLUDE_DIR ${inc_dir})
+    # message("inc_dir= ${inc_dir}")
+endforeach(inc_dir)
 
 include_directories(${INCLUDE_DIR})
 
